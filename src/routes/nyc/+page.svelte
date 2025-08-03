@@ -4,8 +4,8 @@
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	
 	// Event Configuration
-	const EVENT_NAME = "Example";
-	const EVENT_LOCATION = "Example City";
+	const EVENT_NAME = "Daydream NYC";
+	const EVENT_LOCATION = "NYC";
 
 	// Cities where the game jam is happening
 	const cities = `Columbus
@@ -38,7 +38,7 @@ Mumbai`.split("\n")
 	function createSmoothPath(points: Array<{ x: number; y: number }>) {
 		if (points.length < 2) return "";
 		
-		// Create smooth curves that flow horizontally through points
+		// Create smooth curves that flow horiazontally through points
 		const tension = 1.2; // Increased control point distance for smoother curves
 		
 		// Configurable angles for each point (in degrees)
@@ -879,7 +879,15 @@ Mumbai`.split("\n")
 			<div 
 				class="absolute top-0 left-0 w-full h-full border-0 max-sm:scale-200 bg-blue-200 flex items-center justify-center text-[#60574b] font-bold text-xl"
 				style="mask: url('hole.png') no-repeat center; -webkit-mask: url('hole.png') no-repeat center; mask-size: contain; -webkit-mask-size: contain;">
-				Local Event
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.982808302347!2d-74.0466896845921!3d40.68924997933543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5f1c8f86f5cb4866!2sStatue%20of%20Liberty!5e0!3m2!1sen!2sus!4v1654806476855!5m2!1sen!2sus"
+					width="100%"
+					height="100%"
+					style="border:0;"
+					loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"
+					title="Map showing the location of the Statue of Liberty">
+				</iframe>
 			</div>
 			<p class="absolute left-1/2 -translate-x-1/2 font-sans text-center text-2xl pt-12 max-sm:pt-40 max-sm:text-xl w-max max-w-[80vh] max-md:max-w-full md:px-12 text-[#60574b] z-10000 ">All daydream events are organized by high school students like yourself! <br> <span class="font-bold"><a class="underline hover:text-pink" href="https://forms.hackclub.com/daydream">Sign up</a> to organize now!</span></p>
 		</div>

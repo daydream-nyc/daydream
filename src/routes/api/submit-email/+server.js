@@ -26,11 +26,10 @@ export async function POST({ request, getClientAddress }) {
 		}
 		
 		// get IP address
-		const ip = getClientAddress();
+		const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || getClientAddress();
 		
-		let recordId = null;
 		if (base) {
-			const record = await base(AIRTABLE_EMAILS_TABLE || 'email_addresses').create([
+			await base(AIRTABLE_EMAILS_TABLE || 'email_addresses').create([
 				{
 					fields: {
 						email,
@@ -38,7 +37,6 @@ export async function POST({ request, getClientAddress }) {
 					}
 				}
 			]);
-			recordId = record[0].id;
 		}
 		
 		return new Response(null, { status: 200 });

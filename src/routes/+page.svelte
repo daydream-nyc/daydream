@@ -2,6 +2,8 @@
 	import { onMount } from "svelte";
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import Ticker from "$lib/components/Ticker.svelte";
+	import Footer from "$lib/components/Footer.svelte";
 	
 	/** @type {import('./$types').PageData} */
 	export let data;
@@ -269,7 +271,7 @@ Mumbai`.split("\n")
 			result.push(city);
 			// Insert user's city after every 12 cities
 			if ((index + 1) % 12 === 0 && data.userCity) {
-				result.push(`<a href="https://example.com"><tspan fill="#f49cc8" style="text-shadow: 0 0 8px #f7d4e6">${data.userCity}?</tspan></a>`);
+				result.push(`<a href="https://forms.hackclub.com/daydream"><tspan fill="#f49cc8" style="text-shadow: 0 0 8px #f7d4e6">${data.userCity}?</tspan></a>`);
 			}
 		});
 		tickerText = result.join(" • ");
@@ -581,10 +583,40 @@ Mumbai`.split("\n")
 	}
 </style>
 
+
 <svelte:head>
-	<title>Daydream</title>
+	<title>Daydream - Teen Game Jam by Hack Club</title>
+	<meta name="description" content="Join Daydream, the worldwide teen-led game jam by Hack Club! 4,000+ hackers building games in 100+ cities. Sign up to organize or participate in your city." />
+	<meta name="keywords" content="game jam, hackathon, teen coding, Hack Club, game development, teen programming, high school coding" />
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://daydream.hackclub.com" />
+	<meta property="og:title" content="Daydream - Teen Game Jam by Hack Club" />
+	<meta property="og:description" content="Join Daydream, the worldwide teen-led game jam by Hack Club! 4,000+ hackers building games in 100+ cities. Sign up to organize or participate in your city." />
+	<meta property="og:image" content="https://daydream.hackclub.com/og-image.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:site_name" content="Daydream" />
+	
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content="https://daydream.hackclub.com" />
+	<meta property="twitter:title" content="Daydream - Teen Game Jam by Hack Club" />
+	<meta property="twitter:description" content="Join Daydream, the worldwide teen-led game jam by Hack Club! 4,000+ hackers building games in 100+ cities. Sign up to organize or participate in your city." />
+	<meta property="twitter:image" content="https://daydream.hackclub.com/og-image.png" />
+	<meta property="twitter:creator" content="@hackclub" />
+	<meta property="twitter:site" content="@hackclub" />
+	
+	<!-- Additional SEO -->
+	<meta name="robots" content="index, follow" />
+	<meta name="author" content="Hack Club" />
+	<link rel="canonical" href="https://daydream.hackclub.com" />
+	
+	<!-- Analytics -->
 	<script defer data-domain="daydream.hackclub.com" src="https://plausible.io/js/script.js"></script>
 </svelte:head>
+
 
 <div class="absolute top-0 left-0 w-full h-full bg-[url('brushstroking.png')] bg-size-[100vw_100vh] bg-repeat mix-blend-overlay opacity-60 pointer-events-none"></div>
 
@@ -596,30 +628,7 @@ Mumbai`.split("\n")
 
 	<div class="buildings-back-parallax absolute top-0 left-0 w-full h-full bg-[url(/buildings-back.png)] bg-no-repeat bg-contain pointer-events-none lg:-translate-y-15"></div>
 	
-	<!-- Animated text ticker along curvy line -->
-	<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none lg:-translate-y-35 -translate-y-20 overflow-hidden max-md:w-200 max-lg:w-[125%]">
-		<svg width="1280" height="464" viewBox="0 0 1280 464" class="w-full h-max pt-32 object-contain" xmlns="http://www.w3.org/2000/svg">
-			<defs>
-				<path id="curvy-path" d="M-41 274.995C91.5 229.995 203.5 64.4946 483.5 39.9946C763.5 15.4946 892.5 151.495 1165 196.495C1383 232.495 1462.5 263.828 1475 274.995"/>
-				<mask id="reveal-mask">
-					<rect x="0" y="0" width="0" height="464" fill="white">
-						<animate attributeName="width" values="0;1280" dur="2s" calcMode="spline" keySplines="0.05,0.7,0.3,1" keyTimes="0;1" begin="0.75s" fill="freeze"/>
-					</rect>
-				</mask>
-			</defs>
-			<g mask="url(#reveal-mask)">
-				<!-- Background path stroke -->
-				<path d="M-41 268.495C91.5 223.495 203.5 57.9946 483.5 33.4946C763.5 8.9946 892.5 144.995 1165 189.995C1383 225.995 1462.5 257.328 1475 268.495" 
-					  stroke="#9EE4F2" stroke-width="28" fill="none" stroke-linecap="round"/>
-				<text font-family="sans-serif" fill="#EDFCFF" font-weight="bold" font-size="18">
-					<textPath href="#curvy-path" startOffset="-100%">
-						{@html Array(2).fill(tickerText).join(" • ")} • 
-						<animate id="ticker-animation" attributeName="startOffset" values="-100%;0%" dur="30s" repeatCount="indefinite"/>
-					</textPath>
-				</text>
-			</g>
-		</svg>
-	</div>
+	<Ticker {tickerText} />
 	
 	<!-- brush texture clipped to back buildings -->
 	<div class="absolute top-0 left-0 w-full h-full bg-[url('brushstroking.png')] bg-size-[100vw_100vh] bg-repeat pointer-events-none opacity-100 lg:-translate-y-15 bg-center mix-blend-overlay" style="mask-image: url('/buildings-back.png'); mask-size: contain; mask-repeat: no-repeat; mask-position: center top; -webkit-mask-image: url('/buildings-back.png'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center top;"></div>
@@ -1100,28 +1109,7 @@ Mumbai`.split("\n")
 	<div class="absolute top-0 left-0 w-full h-full bg-[url('brushstroking.png')] bg-size-[100vw_100vh] bg-repeat mix-blend-overlay opacity-60 pointer-events-none"></div>
 </div>
 
-<div class="w-full bg-[#FFFFF8] relative min-h-80">
-	<div class="absolute top-0 left-0 w-full h-full bg-[url('/noise.png')] bg-repeat opacity-10 pointer-events-none z-0"></div>
-	<div class="opacity-60 absolute w-full h-32 bg-[url('brushstroking.png')] bg-repeat-x z-10 bg-size-[100vw_100vh] mix-blend-overlay" style="mask-image: url(/footer-clouds.png); mask-size: contain; mask-repeat: repeat-x; -webkit-mask-image: url(/footer-clouds.png); -webkit-mask-size: contain; -webkit-mask-repeat: repeat-x;"></div>
-	<div class="w-full h-32 bg-[#e99cce] z-5" style="mask-image: url(/footer-clouds.png); mask-size: contain; mask-repeat: repeat-x; -webkit-mask-image: url(/footer-clouds.png); -webkit-mask-size: contain; -webkit-mask-repeat: repeat-x;"></div>
-
-	<!-- Footer Text -->
-	<div class="absolute bottom-20 left-32 text-center z-20 max-md:bottom-12 max-md:left-8 max-md:right-4 max-md:text-left">
-		<p class="text-gray-700 mb-2">Made with ♡ by teenagers, for teenagers at Hack Club</p>
-		<div class="flex space-x-4 max-md:flex-col max-md:space-x-0 max-md:space-y-2">
-			<a href="https://hackclub.com" class="underline text-gray-700 hover:text-gray-900 transition-colors ">Hack Club</a>
-			<span class="text-gray-700 max-md:hidden">・</span>
-			<a href="https://hackclub.com/slack" class="underline text-gray-700 hover:text-gray-900 transition-colors ">Slack</a>
-			<span class="text-gray-700 max-md:hidden">・</span>
-			<a href="https://hackclub.com/clubs" class="underline text-gray-700 hover:text-gray-900 transition-colors ">Clubs</a>
-			<span class="text-gray-700 max-md:hidden">・</span>
-			<a href="https://hackclub.com/hackathons" class="underline text-gray-700 hover:text-gray-900 transition-colors ">Hackathons</a>
-		</div>
-	</div>
-
-	<div class="max-sm:hidden absolute bottom-2 right-16 h-2/3 aspect-square bg-[url('brushstroking.png')] bg-repeat z-10 bg-size-[100vw_100vh] mix-blend-overlay" style="mask-image: url(/thought-bubbles.png); mask-size: contain; mask-repeat: no-repeat; -webkit-mask-image: url(/thought-bubbles.png); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat;"></div>
-	<div class="max-sm:hidden absolute bottom-2 right-16 h-2/3 aspect-square bg-[#e99cce]" style="mask-image: url(/thought-bubbles.png); mask-size: contain; mask-repeat: no-repeat; -webkit-mask-image: url(/thought-bubbles.png); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat;"></div>
-</div>
+<Footer />
 
 <!-- Video Popup Modal -->
 {#if showVideoPopup}

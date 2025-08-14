@@ -2,10 +2,6 @@
 
 Your daydream needs its own website. This might be one of the only technical aspects you'll need when organizing your hackathon – and day-of mentoring. 
 
-<div class="font-bold bg-red-500/20 p-4 rounded-md text-red-950">
-Note: The following guide walks through how to set up the website template. The website template is still currently a work-in-progress. If you'd like to use the website template, please wait until later this week.
-</div>
-
 Now… on to how to make your site\!
 
 First, fork the repository:

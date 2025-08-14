@@ -5,7 +5,7 @@
 
 /* Define the Daydream fonts */
 @font-face {
-  font-family: 'Expensify New Kansas';
+  font-family: 'Daydream New';
   font-display: swap;
   src: url('https://daydream.hackclub.com/fonts/serif.woff') format('woff');
   font-weight: 400;
@@ -13,7 +13,7 @@
 }
 
 @font-face {
-  font-family: 'Expensify New Kansas';
+  font-family: 'Daydream New';
   font-display: swap;
   src: url('https://daydream.hackclub.com/fonts/serif-italic.woff') format('woff');
   font-weight: 400;
@@ -22,7 +22,7 @@
 
 /* Apply serif font to all headers */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Expensify New Kansas', ui-serif, serif !important;
+  font-family: 'Daydream New', ui-serif, serif !important;
   color: #833710;
   font-style: italic;
 }
@@ -40,7 +40,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Button styling - matching the "get free stickers" button */
 [data-cy="button-component"] {
-  display: inline-block;
+  display: inline-flex;
   padding: 8px 16px;
   background-color: #E472AB;
   border: none;
@@ -61,6 +61,7 @@ h1, h2, h3, h4, h5, h6 {
 [data-cy="button-component"]:hover {
   box-shadow: 0 2px 0 0 #A65A80;
   transform: translateY(-2px);
+  background-color: #E472AB !important;
 }
 
 [data-cy="button-component"]:active {
@@ -136,8 +137,27 @@ a {
   color: #548abb;
 }
 
+/* the "- Or -" divider */
+.text-sm > span.px-2 {
+  background-color: #FFFBDF !important;
+}
+
 /* make the 'Thank You' text use the header font */
 .fillout-field-thank-you > div > div > div:not(.mt-\[3px\]) p {
-  font-family: 'Expensify New Kansas', ui-serif, serif !important;
+  font-family: 'Daydream New', ui-serif, serif !important;
   font-style: italic;
+}
+
+/* make the checkbox text clickable */
+div:has(> div > [role="checkbox"]) p {
+  cursor: pointer !important;
+}
+
+/* 'sign in with google' button */
+[data-cy="button-component"] .text-blue-500 {
+  color: white !important;
+}
+
+.fillout-field-send-response > div {
+  background: #fffef2;
 }
